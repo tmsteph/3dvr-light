@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +37,14 @@
             font-size: 0.8em;
             opacity: 0.7;
         }
+        .brand {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .brand a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
         canvas {
             display: block;
             margin: 20px auto;
@@ -46,85 +55,89 @@
 </head>
 <body>
     <div class="container">
-        <h1>Light, Time, and Reality</h1><div class="section" id="section1">
-        <h2>What is Light?</h2>
-        <p>Light is energy, yet it behaves like both a wave and a particle. It moves at the fastest speed possible in our universe, but it does not experience time.</p>
-        <canvas id="canvas1"></canvas>
-    </div>
-    
-    <div class="section" id="section2">
-        <h2>Timelessness of Light</h2>
-        <p>From a photon's perspective, it is emitted and absorbed instantly, no matter the distance. This means that for light, there is no past, present, or future—only an eternal now.</p>
-        <canvas id="canvas2"></canvas>
-    </div>
-    
-    <div class="section" id="section3">
-        <h2>Spacetime Bends for Light</h2>
-        <p>Einstein’s theory of relativity shows that space and time adjust to keep the speed of light constant. Time slows and space contracts, ensuring that no observer ever sees light moving at anything other than its fixed speed.</p>
-        <canvas id="canvas3"></canvas>
-    </div>
-    
-    <div class="section" id="section4">
-        <h2>Is Light the Fabric of Reality?</h2>
-        <p>All energy and matter originate from light. Some theories suggest that reality itself is structured around photons, making light the most fundamental entity in the universe.</p>
-        <canvas id="canvas4"></canvas>
-    </div>
-    
-    <div class="section" id="section5">
-        <h2>The Simulation Hypothesis</h2>
-        <p>Does light behave like the code of a cosmic simulation? If photons are timeless and omnipresent, could they be the fundamental "pixels" of our reality?</p>
-        <canvas id="canvas5"></canvas>
-    </div>
-    
-    <div class="footer">
-        <p>Inspired by physics, philosophy, and the nature of existence.</p>
-    </div>
-</div>
-
-<script>
-    function createAnimation(canvasId, animationType) {
-        let scene = new THREE.Scene();
-        let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
-        let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(canvasId) });
-        renderer.setSize(window.innerWidth * 0.8, 400);
+        <div class="brand"><a href="https://3dvr.tech" target="_blank">by 3dvr.tech</a></div>
+        <h1>Light, Time, and Reality</h1>
         
-        let geometry = new THREE.SphereGeometry(0.1, 32, 32);
-        let material = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
-        let photon = new THREE.Mesh(geometry, material);
-        scene.add(photon);
+        <div class="section" id="section1">
+            <h2>What is Light?</h2>
+            <p>Light is energy, yet it behaves like both a wave and a particle. It moves at the fastest speed possible in our universe, but it does not experience time.</p>
+            <canvas id="canvas1"></canvas>
+        </div>
         
-        camera.position.z = 2;
+        <div class="section" id="section2">
+            <h2>Timelessness of Light</h2>
+            <p>From a photon's perspective, it is emitted and absorbed instantly, no matter the distance. This means that for light, there is no past, present, or future—only an eternal now.</p>
+            <canvas id="canvas2"></canvas>
+        </div>
         
-        function animate() {
-            requestAnimationFrame(animate);
-            if (animationType === "wave") {
-                photon.position.y = Math.sin(Date.now() * 0.002) * 0.5;
-            } else if (animationType === "straight") {
-                photon.position.x += 0.02;
-                if (photon.position.x > 2) photon.position.x = -2;
-            } else if (animationType === "orbit") {
-                let time = Date.now() * 0.001;
-                photon.position.x = Math.cos(time) * 1.5;
-                photon.position.y = Math.sin(time) * 1.5;
-            } else if (animationType === "expand") {
-                photon.scale.x = photon.scale.y = photon.scale.z = Math.abs(Math.sin(Date.now() * 0.002)) + 0.5;
-            } else if (animationType === "random") {
-                photon.position.x = Math.sin(Date.now() * 0.002) * 1.5;
-                photon.position.y = Math.cos(Date.now() * 0.002) * 1.5;
+        <div class="section" id="section3">
+            <h2>Spacetime Bends for Light</h2>
+            <p>Einstein’s theory of relativity shows that space and time adjust to keep the speed of light constant. Time slows and space contracts, ensuring that no observer ever sees light moving at anything other than its fixed speed.</p>
+            <canvas id="canvas3"></canvas>
+        </div>
+        
+        <div class="section" id="section4">
+            <h2>Is Light the Fabric of Reality?</h2>
+            <p>All energy and matter originate from light. Some theories suggest that reality itself is structured around photons, making light the most fundamental entity in the universe.</p>
+            <canvas id="canvas4"></canvas>
+        </div>
+        
+        <div class="section" id="section5">
+            <h2>The Simulation Hypothesis</h2>
+            <p>Does light behave like the code of a cosmic simulation? If photons are timeless and omnipresent, could they be the fundamental "pixels" of our reality?</p>
+            <canvas id="canvas5"></canvas>
+        </div>
+        
+        <div class="footer">
+            <p>Inspired by physics, philosophy, and the nature of existence.</p>
+            <div class="brand"><a href="https://3dvr.tech" target="_blank">by 3dvr.tech</a></div>
+        </div>
+    </div>
+    
+    <script>
+        function createAnimation(canvasId, animationType) {
+            let scene = new THREE.Scene();
+            let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+            let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(canvasId) });
+            renderer.setSize(window.innerWidth * 0.8, 400);
+            
+            let geometry = new THREE.SphereGeometry(0.1, 32, 32);
+            let material = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
+            let photon = new THREE.Mesh(geometry, material);
+            scene.add(photon);
+            
+            camera.position.z = 2;
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                if (animationType === "wave") {
+                    photon.position.y = Math.sin(Date.now() * 0.002) * 0.5;
+                } else if (animationType === "straight") {
+                    photon.position.x += 0.02;
+                    if (photon.position.x > 2) photon.position.x = -2;
+                } else if (animationType === "orbit") {
+                    let time = Date.now() * 0.001;
+                    photon.position.x = Math.cos(time) * 1.5;
+                    photon.position.y = Math.sin(time) * 1.5;
+                } else if (animationType === "expand") {
+                    photon.scale.x = photon.scale.y = photon.scale.z = Math.abs(Math.sin(Date.now() * 0.002)) + 0.5;
+                } else if (animationType === "random") {
+                    photon.position.x = Math.sin(Date.now() * 0.002) * 1.5;
+                    photon.position.y = Math.cos(Date.now() * 0.002) * 1.5;
+                }
+                renderer.render(scene, camera);
             }
-            renderer.render(scene, camera);
+            animate();
         }
-        animate();
-    }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        createAnimation("canvas1", "wave");
-        createAnimation("canvas2", "straight");
-        createAnimation("canvas3", "orbit");
-        createAnimation("canvas4", "expand");
-        createAnimation("canvas5", "random");
-    });
-</script>
-
+        document.addEventListener("DOMContentLoaded", function() {
+            createAnimation("canvas1", "wave");
+            createAnimation("canvas2", "straight");
+            createAnimation("canvas3", "orbit");
+            createAnimation("canvas4", "expand");
+            createAnimation("canvas5", "random");
+        });
+    </script>
 </body>
 </html>
+
