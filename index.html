@@ -45,35 +45,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>Light, Time, and Reality</h1><div class="section">
+        <h1>Light, Time, and Reality</h1><div class="section" id="section1">
         <h2>What is Light?</h2>
         <p>Light is energy, yet it behaves like both a wave and a particle. It moves at the fastest speed possible in our universe, but it does not experience time.</p>
+        <canvas id="canvas1"></canvas>
     </div>
     
-    <div class="section">
-        <h2>Interactive Visualization</h2>
-        <p>Explore a simulated photon moving through space below:</p>
-        <canvas id="threejs-canvas"></canvas>
-    </div>
-    
-    <div class="section">
+    <div class="section" id="section2">
         <h2>Timelessness of Light</h2>
         <p>From a photon's perspective, it is emitted and absorbed instantly, no matter the distance. This means that for light, there is no past, present, or future—only an eternal now.</p>
+        <canvas id="canvas2"></canvas>
     </div>
     
-    <div class="section">
+    <div class="section" id="section3">
         <h2>Spacetime Bends for Light</h2>
         <p>Einstein’s theory of relativity shows that space and time adjust to keep the speed of light constant. Time slows and space contracts, ensuring that no observer ever sees light moving at anything other than its fixed speed.</p>
+        <canvas id="canvas3"></canvas>
     </div>
     
-    <div class="section">
+    <div class="section" id="section4">
         <h2>Is Light the Fabric of Reality?</h2>
         <p>All energy and matter originate from light. Some theories suggest that reality itself is structured around photons, making light the most fundamental entity in the universe.</p>
+        <canvas id="canvas4"></canvas>
     </div>
     
-    <div class="section">
+    <div class="section" id="section5">
         <h2>The Simulation Hypothesis</h2>
         <p>Does light behave like the code of a cosmic simulation? If photons are timeless and omnipresent, could they be the fundamental "pixels" of our reality?</p>
+        <canvas id="canvas5"></canvas>
     </div>
     
     <div class="footer">
@@ -82,26 +81,36 @@
 </div>
 
 <script>
-    let scene = new THREE.Scene();
-    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
-    let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("threejs-canvas") });
-    renderer.setSize(window.innerWidth * 0.8, 400);
-    document.body.appendChild(renderer.domElement);
+    function createAnimation(canvasId) {
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(canvasId) });
+        renderer.setSize(window.innerWidth * 0.8, 400);
+        document.body.appendChild(renderer.domElement);
 
-    let geometry = new THREE.SphereGeometry(0.1, 32, 32);
-    let material = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
-    let photon = new THREE.Mesh(geometry, material);
-    scene.add(photon);
+        let geometry = new THREE.SphereGeometry(0.1, 32, 32);
+        let material = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
+        let photon = new THREE.Mesh(geometry, material);
+        scene.add(photon);
 
-    camera.position.z = 2;
+        camera.position.z = 2;
 
-    function animate() {
-        requestAnimationFrame(animate);
-        photon.position.x += 0.02;
-        if (photon.position.x > 2) photon.position.x = -2;
-        renderer.render(scene, camera);
+        function animate() {
+            requestAnimationFrame(animate);
+            photon.position.x += 0.02;
+            if (photon.position.x > 2) photon.position.x = -2;
+            renderer.render(scene, camera);
+        }
+        animate();
     }
-    animate();
+
+    document.addEventListener("DOMContentLoaded", function() {
+        createAnimation("canvas1");
+        createAnimation("canvas2");
+        createAnimation("canvas3");
+        createAnimation("canvas4");
+        createAnimation("canvas5");
+    });
 </script>
 
 </body>
