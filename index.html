@@ -29,6 +29,7 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            position: relative;
         }
         .footer {
             margin-top: 50px;
@@ -37,7 +38,7 @@
         }
         canvas {
             display: block;
-            margin: auto;
+            margin: 20px auto;
             width: 100%;
             height: 400px;
         }
@@ -81,35 +82,47 @@
 </div>
 
 <script>
-    function createAnimation(canvasId) {
+    function createAnimation(canvasId, animationType) {
         let scene = new THREE.Scene();
         let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
         let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(canvasId) });
         renderer.setSize(window.innerWidth * 0.8, 400);
-        document.body.appendChild(renderer.domElement);
-
+        
         let geometry = new THREE.SphereGeometry(0.1, 32, 32);
         let material = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
         let photon = new THREE.Mesh(geometry, material);
         scene.add(photon);
-
+        
         camera.position.z = 2;
-
+        
         function animate() {
             requestAnimationFrame(animate);
-            photon.position.x += 0.02;
-            if (photon.position.x > 2) photon.position.x = -2;
+            if (animationType === "wave") {
+                photon.position.y = Math.sin(Date.now() * 0.002) * 0.5;
+            } else if (animationType === "straight") {
+                photon.position.x += 0.02;
+                if (photon.position.x > 2) photon.position.x = -2;
+            } else if (animationType === "orbit") {
+                let time = Date.now() * 0.001;
+                photon.position.x = Math.cos(time) * 1.5;
+                photon.position.y = Math.sin(time) * 1.5;
+            } else if (animationType === "expand") {
+                photon.scale.x = photon.scale.y = photon.scale.z = Math.abs(Math.sin(Date.now() * 0.002)) + 0.5;
+            } else if (animationType === "random") {
+                photon.position.x = Math.sin(Date.now() * 0.002) * 1.5;
+                photon.position.y = Math.cos(Date.now() * 0.002) * 1.5;
+            }
             renderer.render(scene, camera);
         }
         animate();
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        createAnimation("canvas1");
-        createAnimation("canvas2");
-        createAnimation("canvas3");
-        createAnimation("canvas4");
-        createAnimation("canvas5");
+        createAnimation("canvas1", "wave");
+        createAnimation("canvas2", "straight");
+        createAnimation("canvas3", "orbit");
+        createAnimation("canvas4", "expand");
+        createAnimation("canvas5", "random");
     });
 </script>
 
